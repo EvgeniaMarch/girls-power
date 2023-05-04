@@ -1,21 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Card } from '../../types/cards/Cards';
 
 function CardItem({ card }: { card: Card }): JSX.Element {
+  const [answer, setAnswer] = useState('');
+  const handleAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAnswer(event?.target.value);
+  };
   return (
     <>
       <div>
         <div className="cards-topics">{card.title}</div>
       </div>
-      <button>{card.score}</button>
+      <a class="waves-effect waves-light btn-large">{card.score}</a>
       <div>
         <h3>{`Вопрос за ${card.score}`}</h3>
         <div>{card.question}</div>
         <div className="row">
           <div className="input-field col s6">
-            <input value="" id="answer" type="text" className="validate" placeholder="Ваш ответ" />
+            <input id="answer" type="text" className="validate" placeholder="Ваш ответ" value={answer} onChange={(event) => handleAnswer(event)} />
             <label className="active" htmlFor="answer">
               Введите ответ
             </label>

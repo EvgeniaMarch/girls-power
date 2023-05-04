@@ -1,4 +1,5 @@
 module.exports = {
+
   "env": {
     "browser": true,
     "commonjs": true,
@@ -24,3 +25,4 @@ module.exports = {
     "no-param-reassign": 0
   }
 }
+

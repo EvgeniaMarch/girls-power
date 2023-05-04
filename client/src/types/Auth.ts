@@ -1,5 +1,5 @@
-import { User } from '../../users/types/User';
+import { User } from './users/User';
 
 export type State = {
-  auth: User | undefined;
+  user: User | undefined;
 };

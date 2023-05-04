@@ -3,16 +3,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Card } from '../../types/cards/Cards';
 
-function CardItem(card: Card): JSX.Element {
+function CardItem({ card }: { card: Card }): JSX.Element {
   return (
     <>
       <div>
         <div className="cards-topics">{card.title}</div>
       </div>
       <button>{card.score}</button>
-      <div>{card.question}</div>
+      <div>
+        <h3>{`Вопрос за ${card.score}`}</h3>
+        <div>{card.question}</div>
+        <div className="row">
+          <div className="input-field col s6">
+            <input value="" id="answer" type="text" className="validate" placeholder="Ваш ответ" />
+            <label className="active" htmlFor="answer">
+              Введите ответ
+            </label>
+            <a className="waves-effect waves-light btn-small">Проверить ответ</a>
+          </div>
+        </div>
+      </div>
+
       <div></div>
-      <div>{card.answer}</div>
+      <div>{`Правильный ответ: ${card.answer}`}</div>
     </>
   );
 }

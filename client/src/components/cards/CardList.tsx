@@ -16,8 +16,8 @@ function CardList(): JSX.Element {
 
   return (
     <div>
-      {cards.map((card: Card) => (
-        <CardItem card={card} />
+      {cards.map((card) => (
+        <CardItem key={card.id} card={card} />
       ))}
     </div>
   );

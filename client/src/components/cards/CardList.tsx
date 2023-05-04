@@ -9,9 +9,11 @@ function CardList(): JSX.Element {
   const { cards } = useSelector((store: RootState) => store.cards);
 
   useEffect(() => {
-    fetch('https://localhost:4000')
+    fetch('http://localhost:4000/api/main')
       .then((response) => response.json())
-      .then((result) => dispatch({ type: 'cards/initialCards', payload: result }));
+      .then((result) =>
+        dispatch({ type: 'cards/initialCards', payload: result })
+      );
   }, []);
 
   return (

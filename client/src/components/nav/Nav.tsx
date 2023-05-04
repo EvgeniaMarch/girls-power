@@ -20,7 +20,7 @@ function Nav(): JSX.Element {
           Logo
         </a> */}
 
-        {user && <h3>Hello, {user.name}!</h3>}
+        {user && <h3>Hello, {user.login}!</h3>}
         <ul className='nav__menu'>
           <li>
             <NavLink to='/'>Главная страничка</NavLink>

@@ -1,4 +1,5 @@
 {
+
   "name": "221-rest-api",
   "version": "1.0.0",
   "description": "",
@@ -7,6 +8,7 @@
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js --ext js,json,jsx --ignore ./sessions",
+
     "dbr": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "keywords": [],

@@ -11,7 +11,7 @@ module.exports = {
           password: await bcrypt.hash("123", 10),
           email: "petya@mail.ru",
           score: 0,
-          Question: [
+          Questions: [
             {
               user_id: 1,
               title: "Великие женщины",

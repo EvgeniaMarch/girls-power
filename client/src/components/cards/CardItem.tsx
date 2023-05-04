@@ -8,12 +8,16 @@ function CardItem({ card }: { card: Card }): JSX.Element {
   const handleAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer(event?.target.value);
   };
+
+  const handleCheckAnswer = (event: React.FormEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+  };
   return (
     <>
       <div>
         <div className="cards-topics">{card.title}</div>
       </div>
-      <a class="waves-effect waves-light btn-large">{card.score}</a>
+      <a className="waves-effect waves-light btn-large">{card.score}</a>
       <div>
         <h3>{`Вопрос за ${card.score}`}</h3>
         <div>{card.question}</div>
@@ -23,7 +27,9 @@ function CardItem({ card }: { card: Card }): JSX.Element {
             <label className="active" htmlFor="answer">
               Введите ответ
             </label>
-            <a className="waves-effect waves-light btn-small">Проверить ответ</a>
+            <a className="waves-effect waves-light btn-small" onSubmit={handleCheckAnswer}>
+              Проверить ответ
+            </a>
           </div>
         </div>
       </div>

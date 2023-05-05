@@ -16,38 +16,38 @@ function Nav(): JSX.Element {
 
   return (
     <nav>
-      <div className="nav-wrapper pink darken-3">
+      <div className='nav-wrapper pink darken-3'>
         {/* <a href='#' className='brand-logo'>
           Logo
         </a> */}
 
         {user && <h3>Привет, {user.login}!</h3>}
-        <ul className="nav__menu">
+        <ul className='nav__menu'>
           <li>
-            <NavLink to="/">
+            <NavLink to='/'>
               <img
-                className="logo"
-                src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png"
-                alt="pic"
+                className='logo'
+                src='https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png'
+                alt='pic'
               />
             </NavLink>
           </li>
           <li>
-            <NavLink to="/">Главная страница</NavLink>
+            <NavLink to='/'>Главная страница</NavLink>
           </li>
 
           {!user ? (
             <>
               <li>
-                <NavLink to="/login">Войти</NavLink>
+                <NavLink to='/login'>Войти</NavLink>
               </li>
               <li>
-                <NavLink to="/register">Зарегистрироваться</NavLink>
+                <NavLink to='/register'>Зарегистрироваться</NavLink>
               </li>
             </>
           ) : (
             <li>
-              <Link onClick={logOut} to="/logout">
+              <Link onClick={logOut} to='/logout'>
                 Выйти
               </Link>
             </li>

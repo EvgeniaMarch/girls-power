@@ -58,14 +58,25 @@ function CardItem({ card }: { card: Card }): JSX.Element {
         <div className="card">
           <h3>{`Вопрос за ${card.score}`}</h3>
           <div>{card.question}</div>
-          <div className="row">
-            <div className="input-field col s6">
+
+          <div className='1'>
+            <div className='input-field col s6'>
               <form onSubmit={handleCheckAnswer}>
-                <input id="answer" type="text" className="validate" placeholder="Ваш ответ" value={answer} onChange={(event) => handleAnswer(event)} />
-                <label className="active" htmlFor="answer">
-                  Введите ответ
-                </label>
-                <button className="waves-effect waves-light btn-small" onClick={hadleShowAnswer}>
+                <input
+                  id='answer'
+                  type='text'
+                  className='validate input'
+                  placeholder='Ваш ответ'
+                  value={answer}
+                  onChange={(event) => handleAnswer(event)}
+                />
+                <label className='active' htmlFor='answer'></label>
+                <button
+                  className='waves-effect waves-light btn-small btn-ok-card'
+                  onClick={hadleShowAnswer}
+                >
+
+        
                   Проверить ответ
                 </button>
               </form>
@@ -76,7 +87,12 @@ function CardItem({ card }: { card: Card }): JSX.Element {
             <>
               <div>{`${result}`}</div>
               <div>
-                <button className="waves-effect waves-light btn-small" onClick={handleModal}>
+
+                <button
+                  className='waves-effect waves-light btn-small btn-ok-card'
+                  onClick={handleModal}
+                >
+
                   Закрыть
                 </button>
               </div>

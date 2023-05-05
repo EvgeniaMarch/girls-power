@@ -37,7 +37,7 @@ function CardItem({ card }: { card: Card }): JSX.Element {
     setModal((prev) => !prev);
   };
   return (
-    <div className="main-container">
+    <div className='main-container'>
       <div>
         {/* <div className="cards-topics" style={{ color: 'black' }}>
           {card.title}
@@ -45,22 +45,37 @@ function CardItem({ card }: { card: Card }): JSX.Element {
       </div>
 
       {!modal && (
-        <button className="waves-effect waves-light btn-large score-btns" onClick={handleModal}>
-          {card.score}
-        </button>
+        <div className='buttons-Container'>
+          <button
+            className='waves-effect waves-light btn-large score-btns pink lighten-2'
+            onClick={handleModal}
+          >
+            {card.score}
+          </button>
+        </div>
       )}
       {modal && (
-        <div>
+        <div className='card'>
           <h3>{`Вопрос за ${card.score}`}</h3>
           <div>{card.question}</div>
-          <div className="row">
-            <div className="input-field col s6">
+          <div className='row'>
+            <div className='input-field col s6'>
               <form onSubmit={handleCheckAnswer}>
-                <input id="answer" type="text" className="validate" placeholder="Ваш ответ" value={answer} onChange={(event) => handleAnswer(event)} />
-                <label className="active" htmlFor="answer">
+                <input
+                  id='answer'
+                  type='text'
+                  className='validate'
+                  placeholder='Ваш ответ'
+                  value={answer}
+                  onChange={(event) => handleAnswer(event)}
+                />
+                <label className='active' htmlFor='answer'>
                   Введите ответ
                 </label>
-                <button className="waves-effect waves-light btn-small" onClick={hadleShowAnswer}>
+                <button
+                  className='waves-effect waves-light btn-small'
+                  onClick={hadleShowAnswer}
+                >
                   Проверить ответ
                 </button>
               </form>
@@ -71,7 +86,10 @@ function CardItem({ card }: { card: Card }): JSX.Element {
             <>
               <div>{`${result}`}</div>
               <div>
-                <button className="waves-effect waves-light btn-small" onClick={handleModal}>
+                <button
+                  className='waves-effect waves-light btn-small'
+                  onClick={handleModal}
+                >
                   Закрыть
                 </button>
               </div>

@@ -4,21 +4,50 @@
 }
 
 .topics {
-  margin-top: 40px;
 }
 
 .score-btns {
+  width: 200px;
+  height: 150px;
+  font-size: 30px;
+  border-radius: 10px;
+  border: 2px solid rgb(183, 5, 100);
 }
 
 .main-container {
+  display: flex;
   color: black;
+  height: 150px;
 }
 
 .topic-item {
-  border: 2px solid teal;
+  display: flex;
+  border: 2px solid rgb(183, 5, 100);
   border-radius: 4px;
-  width: 30%;
-  margin-bottom: 10px;
+  width: 300px;
+  height: 150px;
+  font-size: 25px;
   text-align: center;
-  font-size: 16px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.buttons-Container {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px;
+}
+.all-btns {
+  display: flex;
+
+  width: 1000px;
+  flex-wrap: wrap;
+}
+.card {
+  width: 700px;
+  position: absolute;
+  z-index: 99;
+  top: 30%;
+  left: 30%;
+  font-size: 25px;
 }

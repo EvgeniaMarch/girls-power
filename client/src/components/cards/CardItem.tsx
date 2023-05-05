@@ -28,9 +28,8 @@ function CardItem({ card }: { card: Card }): JSX.Element {
       console.log(result);
     }
     setCheckAnswer(true);
+    setAnswer('');
   };
-
-  // const check = hadleShowAnswer();
 
   const handleModal = () => {
     setModal((prev) => !prev);
@@ -65,12 +64,19 @@ function CardItem({ card }: { card: Card }): JSX.Element {
               </form>
             </div>
           </div>
+
+          {checkAnswer && (
+            <>
+              <div>{`${result}`}</div>
+              <div>
+                <button className="waves-effect waves-light btn-small" onClick={handleModal}>
+                  Закрыть
+                </button>
+              </div>
+            </>
+          )}
         </div>
       )}
-      {checkAnswer && <div>{`${result}`}</div>}
-
-      {/* <div></div>
-      <div>{`Правильный ответ: ${card.answer}`}</div> */}
     </div>
   );
 }

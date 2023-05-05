@@ -10,6 +10,8 @@ export const scoreReducer = (state: State = initialState, action: Action): State
     case 'ADD_SCORE':
       console.log(action.payload);
       return { ...state, score: state.score + action.payload };
+    // case 'UP_SCORE':
+    //   return { ...state, score: action.payload };
 
     default:
       return state;

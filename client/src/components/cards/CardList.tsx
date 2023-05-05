@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import CardItem from './CardItem';
 import { Card } from '../../types/cards/Cards';
+import CardTopics from './CardTopics';
 
 function CardList(): JSX.Element {
   const dispatch = useDispatch();
@@ -11,13 +12,16 @@ function CardList(): JSX.Element {
   useEffect(() => {
     fetch('http://localhost:4000/api/main')
       .then((response) => response.json())
-      .then((result) =>
-        dispatch({ type: 'cards/initialCards', payload: result })
-      );
+      .then((result) => {
+        console.log(result);
+
+        dispatch({ type: 'cards/initialCards', payload: result });
+      });
   }, []);
 
   return (
     <div>
+      <CardTopics />
       {cards.map((card) => (
         <CardItem key={card.id} card={card} />
       ))}

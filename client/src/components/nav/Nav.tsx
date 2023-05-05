@@ -1,12 +1,21 @@
-import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, store } from '../../redux/store';
 import './Nav.css';
 
 function Nav(): JSX.Element {
   const { user } = useSelector((store: RootState) => store.user);
+
+
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   console.log(user?.login);
+  // }, [user, navigate]);
+
   const { score } = useSelector((store: RootState) => store.score);
+
 
   const dispatch = useDispatch();
 

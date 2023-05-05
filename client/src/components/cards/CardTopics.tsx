@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import CardItem from './CardItem';
 import { Card } from '../../types/cards/Cards';
+import './CardItem.css';
 
 function CardTopics(): JSX.Element {
   return (
-    <div style={{ color: 'black' }}>
-      <div>Великие женщины</div>
-      <div>Великие неженщины</div>
-      <div>Интересные факты о животных</div>
-      <div>Космос</div>
-      <div>Эмоджи ребусы</div>
+    <div style={{ color: 'black' }} className="topics">
+      <div className="topic-item">Великие женщины</div>
+      <div className="topic-item">Великие неженщины</div>
+      <div className="topic-item">Интересные факты о животных</div>
+      <div className="topic-item">Космос</div>
+      <div className="topic-item">Эмоджи ребусы</div>
     </div>
   );
 }

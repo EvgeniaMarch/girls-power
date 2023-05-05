@@ -9,6 +9,8 @@ function CardItem({ card }: { card: Card }): JSX.Element {
   const [modal, setModal] = useState(false);
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [result, setResult] = useState('');
+
+  const { score } = useSelector((store: RootState) => store.score);
   const handleAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer(event?.target.value);
   };

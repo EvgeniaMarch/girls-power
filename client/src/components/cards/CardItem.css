@@ -1,3 +1,24 @@
-.hidden {
-  display: none;
+.main {
+  padding: 20px;
+  display: flex;
+}
+
+.topics {
+  margin-top: 40px;
+}
+
+.score-btns {
+}
+
+.main-container {
+  color: black;
+}
+
+.topic-item {
+  border: 2px solid teal;
+  border-radius: 4px;
+  width: 30%;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 16px;
 }

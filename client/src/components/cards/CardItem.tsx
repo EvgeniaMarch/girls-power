@@ -35,7 +35,7 @@ function CardItem({ card }: { card: Card }): JSX.Element {
     setModal((prev) => !prev);
   };
   return (
-    <div style={{ color: 'black' }}>
+    <div className="main-container">
       <div>
         {/* <div className="cards-topics" style={{ color: 'black' }}>
           {card.title}
@@ -43,7 +43,7 @@ function CardItem({ card }: { card: Card }): JSX.Element {
       </div>
 
       {!modal && (
-        <button className="waves-effect waves-light btn-large" onClick={handleModal}>
+        <button className="waves-effect waves-light btn-large score-btns" onClick={handleModal}>
           {card.score}
         </button>
       )}

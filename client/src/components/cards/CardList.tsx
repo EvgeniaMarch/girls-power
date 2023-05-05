@@ -4,6 +4,7 @@ import { RootState } from '../../redux/store';
 import CardItem from './CardItem';
 import { Card } from '../../types/cards/Cards';
 import CardTopics from './CardTopics';
+import './CardItem.css';
 
 function CardList(): JSX.Element {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function CardList(): JSX.Element {
   }, []);
 
   return (
-    <div>
+    <div className="main">
       <CardTopics />
       {cards.map((card) => (
         <CardItem key={card.id} card={card} />

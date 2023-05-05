@@ -21,11 +21,13 @@ function CardList(): JSX.Element {
   }, []);
 
   return (
-    <div className="main">
+    <div className='main'>
       <CardTopics />
-      {cards.map((card) => (
-        <CardItem key={card.id} card={card} />
-      ))}
+      <div className='all-btns'>
+        {cards.map((card) => (
+          <CardItem key={card.id} card={card} />
+        ))}
+      </div>
     </div>
   );
 }

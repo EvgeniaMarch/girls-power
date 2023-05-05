@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import CardItem from './CardItem';
-import { Card } from '../../types/cards/Cards';
 import CardTopics from './CardTopics';
 import './CardItem.css';
 

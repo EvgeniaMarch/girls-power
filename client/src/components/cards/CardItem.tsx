@@ -9,6 +9,8 @@ function CardItem({ card }: { card: Card }): JSX.Element {
   const [modal, setModal] = useState(false);
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [result, setResult] = useState('');
+  const dispatch = useDispatch();
+  const { score } = useSelector((store: RootState) => store.score);
   const handleAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer(event?.target.value);
   };
@@ -20,7 +22,7 @@ function CardItem({ card }: { card: Card }): JSX.Element {
   const hadleShowAnswer = () => {
     if (answer === card.answer) {
       console.log(answer, card.answer);
-
+      dispatch({ type: 'ADD_SCORE', payload: +card.score });
       setResult('Верно!');
       console.log(result);
     } else {

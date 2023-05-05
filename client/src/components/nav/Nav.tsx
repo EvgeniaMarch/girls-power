@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import './Nav.css';
 
 function Nav(): JSX.Element {
   const { user } = useSelector((store: RootState) => store.user);
@@ -15,30 +16,39 @@ function Nav(): JSX.Element {
 
   return (
     <nav>
-      <div className='nav-wrapper'>
+      <div className="nav-wrapper pink darken-3">
         {/* <a href='#' className='brand-logo'>
           Logo
         </a> */}
 
-        {user && <h3>Hello, {user.login}!</h3>}
-        <ul className='nav__menu'>
+        {user && <h3>Привет, {user.login}!</h3>}
+        <ul className="nav__menu">
           <li>
-            <NavLink to='/'>Главная страничка</NavLink>
+            <NavLink to="/">
+              <img
+                className="logo"
+                src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png"
+                alt="pic"
+              />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/">Главная страница</NavLink>
           </li>
 
           {!user ? (
             <>
               <li>
-                <NavLink to='/signin'>signIn</NavLink>
+                <NavLink to="/login">Войти</NavLink>
               </li>
               <li>
-                <NavLink to='/signup'>signUp</NavLink>
+                <NavLink to="/register">Зарегистрироваться</NavLink>
               </li>
             </>
           ) : (
             <li>
-              <Link onClick={logOut} to='/logout'>
-                LogOut
+              <Link onClick={logOut} to="/logout">
+                Выйти
               </Link>
             </li>
           )}

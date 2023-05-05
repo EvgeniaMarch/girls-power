@@ -33,7 +33,7 @@ function Nav(): JSX.Element {
               <NavLink to="/home">Главная страница</NavLink>
             </li>
             <li>
-              <Link onClick={logOut} to="/logout">
+              <Link onClick={logOut} to="/home">
                 Выйти
               </Link>
             </li>

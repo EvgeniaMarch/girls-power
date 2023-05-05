@@ -12,9 +12,25 @@ const userReducer = (state: State = initialState, action: Action): State => {
         ...state,
         user: action.payload,
       };
+    case 'SIGN_UP':
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case 'SIGN_IN':
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case 'LOG_OUT':
+      return {
+        ...state,
+        user: undefined,
+      };
 
     default:
       return state;
   }
 };
+
 export default userReducer;

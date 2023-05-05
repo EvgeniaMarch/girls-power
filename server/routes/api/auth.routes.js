@@ -5,6 +5,7 @@ const { User } = require('../../db/models');
 
 authApiRouter.post('/register', async (req, res) => {
   const { login, email, password, password2 } = req.body;
+  console.log('assssssss');
 
   try {
     if (login && email && password && password2) {
@@ -37,6 +38,7 @@ authApiRouter.post('/register', async (req, res) => {
       }
 
       if (!existingEmail && !existingUser && password === password2) {
+        console.log('ppppppppppppp');
         const user = await User.create({
           login,
           email,
@@ -44,8 +46,9 @@ authApiRouter.post('/register', async (req, res) => {
         });
         console.log(user.id);
         console.log(req.session);
-        // req.session.userId = user.id;
+        req.session.userId = user.id;
         res.status(201).json(user);
+        return;
       }
     } else {
       res.status(403).json({ message: 'Заполните все поля' });

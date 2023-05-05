@@ -9,6 +9,7 @@ function CardItem({ card }: { card: Card }): JSX.Element {
   const [modal, setModal] = useState(false);
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [result, setResult] = useState('');
+  const [disableBtns, setDisableBtns] = useState(false);
   const dispatch = useDispatch();
   const { score } = useSelector((store: RootState) => store.score);
   const handleAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +24,7 @@ function CardItem({ card }: { card: Card }): JSX.Element {
     if (answer === card.answer) {
       console.log(answer, card.answer);
       dispatch({ type: 'ADD_SCORE', payload: +card.score });
+      // fetch
       setResult('Верно!');
       console.log(result);
     } else {
@@ -35,9 +37,10 @@ function CardItem({ card }: { card: Card }): JSX.Element {
 
   const handleModal = () => {
     setModal((prev) => !prev);
+    setDisableBtns(true);
   };
   return (
-    <div className='main-container'>
+    <div className="main-container">
       <div>
         {/* <div className="cards-topics" style={{ color: 'black' }}>
           {card.title}
@@ -45,19 +48,17 @@ function CardItem({ card }: { card: Card }): JSX.Element {
       </div>
 
       {!modal && (
-        <div className='buttons-Container'>
-          <button
-            className='waves-effect waves-light btn-large score-btns pink lighten-2'
-            onClick={handleModal}
-          >
+        <div className="buttons-Container">
+          <button className="waves-effect waves-light btn-large score-btns pink lighten-2" onClick={handleModal} disabled={disableBtns}>
             {card.score}
           </button>
         </div>
       )}
       {modal && (
-        <div className='card'>
+        <div className="card">
           <h3>{`Вопрос за ${card.score}`}</h3>
           <div>{card.question}</div>
+
           <div className='1'>
             <div className='input-field col s6'>
               <form onSubmit={handleCheckAnswer}>
@@ -74,6 +75,8 @@ function CardItem({ card }: { card: Card }): JSX.Element {
                   className='waves-effect waves-light btn-small btn-ok-card'
                   onClick={hadleShowAnswer}
                 >
+
+        
                   Проверить ответ
                 </button>
               </form>
@@ -84,10 +87,12 @@ function CardItem({ card }: { card: Card }): JSX.Element {
             <>
               <div>{`${result}`}</div>
               <div>
+
                 <button
                   className='waves-effect waves-light btn-small btn-ok-card'
                   onClick={handleModal}
                 >
+
                   Закрыть
                 </button>
               </div>

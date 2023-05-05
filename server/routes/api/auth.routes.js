@@ -12,6 +12,7 @@ authApiRouter.post('/register', async (req, res) => {
         res
           .status(403)
           .json({ success: false, message: 'Пароли не совпадают' });
+        return;
       }
 
       const existingUser = await User.findOne({ where: { login } });
@@ -21,6 +22,7 @@ authApiRouter.post('/register', async (req, res) => {
           success: false,
           message: 'Пользователь с таким логином уже существует',
         });
+        return;
       }
 
       const existingEmail = await User.findOne({ where: { email } });
@@ -31,6 +33,7 @@ authApiRouter.post('/register', async (req, res) => {
           message:
             'Пользователь с таким адресом электронной почты уже существует',
         });
+        return;
       }
 
       if (!existingEmail && !existingUser && password === password2) {
@@ -39,19 +42,16 @@ authApiRouter.post('/register', async (req, res) => {
           email,
           password: await bcrypt.hash(password, 10),
         });
-        req.session.userId = user.id;
-        res.status(201).json({ user });
+        console.log(user.id);
+        console.log(req.session);
+        // req.session.userId = user.id;
+        res.status(201).json(user);
       }
     } else {
       res.status(403).json({ message: 'Заполните все поля' });
     }
   } catch (error) {
     console.error(error);
-
-    res.status(500).json({
-      success: false,
-      message: 'Непредвиденная ошибка сервера. Попробуйте позже',
-    });
   }
 });
 
@@ -100,6 +100,7 @@ authApiRouter.get('/logout', async (req, res) => {
 });
 
 authApiRouter.get('/checkUser', async (req, res) => {
+  console.log('lflflf');
   try {
     const userSession = req.session.userId;
     if (userSession) {
@@ -107,6 +108,7 @@ authApiRouter.get('/checkUser', async (req, res) => {
         where: { id: userSession },
         attributes: { exclude: ['password'] },
       });
+      console.log('userserser', user);
       res.status(201).json(user);
     } else {
       res.end();

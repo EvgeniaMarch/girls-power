@@ -7,11 +7,15 @@ import './Nav.css';
 function Nav(): JSX.Element {
   const { user } = useSelector((store: RootState) => store.user);
 
+
   const navigate = useNavigate();
 
   // useEffect(() => {
   //   console.log(user?.login);
   // }, [user, navigate]);
+
+  const { score } = useSelector((store: RootState) => store.score);
+
 
   const dispatch = useDispatch();
 
@@ -28,19 +32,19 @@ function Nav(): JSX.Element {
           <ul className="nav__menu">
             <li>
               <NavLink to="/home">
-                <img
-                  className="logo"
-                  src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png"
-                  alt="pic"
-                />
+                <img className="logo" src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png" alt="pic" />
               </NavLink>
             </li>
-            <li>Привет, {user.login}!</li>
+            <li>
+              Привет, {user.login}! Твой счет: {score}
+            </li>
+
             <li>
               <NavLink to="/home">Главная страница</NavLink>
             </li>
+
             <li>
-              <Link onClick={logOut} to="/home">
+              <Link onClick={logOut} to="/logout">
                 Выйти
               </Link>
             </li>
@@ -49,11 +53,7 @@ function Nav(): JSX.Element {
           <ul className="nav__menu">
             <li>
               <NavLink to="/">
-                <img
-                  className="logo"
-                  src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png"
-                  alt="pic"
-                />
+                <img className="logo" src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png" alt="pic" />
               </NavLink>
             </li>
             <li>
@@ -67,8 +67,8 @@ function Nav(): JSX.Element {
             </li>
           </ul>
         )}
-        <Outlet />
       </div>
+      <Outlet />
     </nav>
   );
 }

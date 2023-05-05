@@ -17,7 +17,7 @@ function App(): JSX.Element {
     api
       .checkUser()
       .then((data) => dispatch({ type: 'GET_USER', payload: data }));
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>

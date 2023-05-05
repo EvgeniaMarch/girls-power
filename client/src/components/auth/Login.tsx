@@ -6,6 +6,9 @@ function Login(): JSX.Element {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
+  const [showMistake, setShowMistake] = useState(false);
+  const [showOtherMistake, setShowOtherMistake] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -20,9 +23,24 @@ function Login(): JSX.Element {
       },
       body: JSON.stringify({ login, password }),
     });
+
     const data = await res.json();
-    dispatch({ type: 'SIGN_IN', payload: data });
-    navigate('/home');
+    console.log(data);
+    if (data.id) {
+      dispatch({ type: 'SIGN_IN', payload: data });
+      navigate('/home');
+      return;
+    }
+    if (
+      data.message === 'Нет такого пользователя, либо пароль не соответствует'
+    ) {
+      setShowMistake(true);
+      return;
+    }
+    if (data.message === 'Заполните все поля') {
+      setShowOtherMistake(true);
+      return;
+    }
   };
 
   return (
@@ -43,6 +61,11 @@ function Login(): JSX.Element {
       />
 
       <button type="submit">Авторизироваться</button>
+
+      {showMistake && (
+        <div>Нет такого пользователя, либо пароль не соответствует</div>
+      )}
+      {showOtherMistake && <div>Заполните все поля</div>}
     </form>
   );
 }

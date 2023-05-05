@@ -6,6 +6,8 @@ import './Nav.css';
 
 function Nav(): JSX.Element {
   const { user } = useSelector((store: RootState) => store.user);
+  const { score } = useSelector((store: RootState) => store.score);
+
   const dispatch = useDispatch();
 
   const logOut = (): void => {
@@ -21,14 +23,12 @@ function Nav(): JSX.Element {
           <ul className="nav__menu">
             <li>
               <NavLink to="/home">
-                <img
-                  className="logo"
-                  src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png"
-                  alt="pic"
-                />
+                <img className="logo" src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png" alt="pic" />
               </NavLink>
             </li>
             <li>Привет, {user.login}!</li>
+            <li>Твой счет: {score}</li>
+
             <li>
               <NavLink to="/home">Главная страница</NavLink>
             </li>
@@ -42,11 +42,7 @@ function Nav(): JSX.Element {
           <ul className="nav__menu">
             <li>
               <NavLink to="/">
-                <img
-                  className="logo"
-                  src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png"
-                  alt="pic"
-                />
+                <img className="logo" src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png" alt="pic" />
               </NavLink>
             </li>
             <li>

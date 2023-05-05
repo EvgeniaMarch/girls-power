@@ -27,6 +27,8 @@ authApiRouter.post('/register', async (req, res) => {
       }
 
       const existingEmail = await User.findOne({ where: { email } });
+      console.log(existingEmail);
+      console.log(existingUser);
 
       if (existingEmail) {
         res.status(409).json({
@@ -73,6 +75,7 @@ authApiRouter.post('/login', async (req, res) => {
         };
         req.session.userId = existingUser.id;
         res.status(201).json(existingUser);
+        return;
       }
 
       if (!user || !(await bcrypt.compare(password, user.password))) {
@@ -80,9 +83,11 @@ authApiRouter.post('/login', async (req, res) => {
           success: false,
           message: 'Нет такого пользователя, либо пароль не соответствует',
         });
+        return;
       }
     } else {
       res.status(403).json({ message: 'Заполните все поля' });
+      return;
     }
   } catch (error) {
     res.status(404).json({ message: error.message });

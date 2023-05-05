@@ -14,7 +14,8 @@ function Registration(): JSX.Element {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
-    const res = await fetch('/register', {
+    const res = await fetch('http://localhost:4000/api/auth/register', {
+      credentials: 'include',
       method: 'post',
       headers: {
         'Content-type': 'application/json',
@@ -22,43 +23,44 @@ function Registration(): JSX.Element {
       body: JSON.stringify({ login, email, password, password2 }),
     });
     const data = await res.json();
+    console.log(data);
     dispatch({ type: 'SIGN_UP', payload: data });
-    navigate('/');
+    navigate('/home');
   };
 
   return (
     <form onSubmit={onHandleSubmit}>
-      <label htmlFor='login'>Введи логин</label>
+      <label htmlFor="login">Введи логин</label>
       <input
         value={login}
         onChange={(e) => setLogin(e.target.value)}
-        id='login'
-        type='login'
+        id="login"
+        type="login"
       />
-      <label htmlFor='email'>Введи почту</label>
+      <label htmlFor="email">Введи почту</label>
       <input
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        id='email'
-        type='email'
+        id="email"
+        type="email"
       />
 
-      <label htmlFor='password'>Введи пароль</label>
+      <label htmlFor="password">Введи пароль</label>
       <input
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        id='password'
-        type='password'
+        id="password"
+        type="password"
       />
-      <label htmlFor='password2'>Повтори пароль</label>
+      <label htmlFor="password2">Повтори пароль</label>
       <input
         value={password2}
         onChange={(e) => setPassword2(e.target.value)}
-        id='password2'
-        type='password2'
+        id="password2"
+        type="password2"
       />
 
-      <button type='submit'>Зарегистрироваться</button>
+      <button type="submit">Зарегистрироваться</button>
     </form>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState, store } from '../../redux/store';
 import './Nav.css';
 
 function Nav(): JSX.Element {
@@ -9,13 +9,14 @@ function Nav(): JSX.Element {
   const dispatch = useDispatch();
 
   const logOut = (): void => {
-    fetch('/logout')
+    fetch('/api/auth/logout')
       .then((res) => res.json())
       .then(() => dispatch({ type: 'LOG_OUT' }));
   };
 
   return (
     <nav>
+
       <div className='nav-wrapper pink darken-3'>
         {/* <a href='#' className='brand-logo'>
           Logo
@@ -48,13 +49,36 @@ function Nav(): JSX.Element {
           ) : (
             <li>
               <Link onClick={logOut} to='/logout'>
+
+
                 Выйти
               </Link>
             </li>
-          )}
-        </ul>
+          </ul>
+        ) : (
+          <ul className="nav__menu">
+            <li>
+              <NavLink to="/">
+                <img
+                  className="logo"
+                  src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png"
+                  alt="pic"
+                />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/home">Главная страница</NavLink>
+            </li>
+            <li>
+              <NavLink to="/login">Войти</NavLink>
+            </li>
+            <li>
+              <NavLink to="/register">Зарегистрироваться</NavLink>
+            </li>
+          </ul>
+        )}
+        <Outlet />
       </div>
-      <Outlet />
     </nav>
   );
 }

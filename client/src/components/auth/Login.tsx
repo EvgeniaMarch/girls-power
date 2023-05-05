@@ -13,7 +13,7 @@ function Login(): JSX.Element {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
-    const res = await fetch('/login', {
+    const res = await fetch('/api/auth/login', {
       method: 'post',
       headers: {
         'Content-type': 'application/json',
@@ -22,27 +22,27 @@ function Login(): JSX.Element {
     });
     const data = await res.json();
     dispatch({ type: 'SIGN_IN', payload: data });
-    navigate('/');
+    navigate('/home');
   };
 
   return (
     <form onSubmit={onHandleSubmit}>
-      <label htmlFor='login'>Логин</label>
+      <label htmlFor="login">Логин</label>
       <input
         value={login}
         onChange={(e) => setLogin(e.target.value)}
-        id='login'
-        type='login'
+        id="login"
+        type="login"
       />
-      <label htmlFor='password'>Пароль</label>
+      <label htmlFor="password">Пароль</label>
       <input
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        id='password'
-        type='password'
+        id="password"
+        type="password"
       />
 
-      <button type='submit'>Авторизироваться</button>
+      <button type="submit">Авторизироваться</button>
     </form>
   );
 }

@@ -10,6 +10,11 @@ function Registration(): JSX.Element {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [showPasswordMistake, setShowPasswordMistake] = useState(false);
+  const [showLoginMistake, setShowLoginMistake] = useState(false);
+  const [showEmailMistake, setShowEmailMistake] = useState(false);
+  const [showEmptyMistake, setShowEmptyMistake] = useState(false);
+
   const onHandleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
@@ -24,8 +29,30 @@ function Registration(): JSX.Element {
     });
     const data = await res.json();
     console.log(data);
-    dispatch({ type: 'SIGN_UP', payload: data });
-    navigate('/home');
+    if (data.id) {
+      dispatch({ type: 'SIGN_UP', payload: data });
+      navigate('/home');
+      return;
+    }
+    if (data.message === 'Пароли не совпадают') {
+      setShowPasswordMistake(true);
+      return;
+    }
+    if (data.message === 'Пользователь с таким логином уже существует') {
+      setShowLoginMistake(true);
+      return;
+    }
+    if (
+      data.message ===
+      'Пользователь с таким адресом электронной почты уже существует'
+    ) {
+      setShowEmailMistake(true);
+      return;
+    }
+    if (data.message === 'Заполните все поля') {
+      setShowEmptyMistake(true);
+      return;
+    }
   };
 
   return (
@@ -61,6 +88,15 @@ function Registration(): JSX.Element {
       />
 
       <button type="submit">Зарегистрироваться</button>
+
+      {showPasswordMistake && <div>Пароли не совпадают</div>}
+      {showLoginMistake && (
+        <div>Пользователь с таким логином уже существует</div>
+      )}
+      {showEmailMistake && (
+        <div>Пользователь с таким адресом электронной почты уже существует</div>
+      )}
+      {showEmptyMistake && <div>Заполните все поля</div>}
     </form>
   );
 }

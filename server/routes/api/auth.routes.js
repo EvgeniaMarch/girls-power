@@ -40,14 +40,14 @@ authApiRouter.post('/register', async (req, res) => {
       }
 
       if (!existingEmail && !existingUser && password === password2) {
-        console.log('ppppppppppppp');
+        // console.log('ppppppppppppp');
         const user = await User.create({
           login,
           email,
           password: await bcrypt.hash(password, 10),
         });
-        console.log(user.id);
-        console.log(req.session);
+        // console.log(user.id);
+        // console.log(req.session);
         req.session.userId = user.id;
         res.status(201).json(user);
         return;
@@ -74,6 +74,7 @@ authApiRouter.post('/login', async (req, res) => {
           email: user.email,
         };
         req.session.userId = existingUser.id;
+        console.log('77', req.session.userId);
         res.status(201).json(existingUser);
         return;
       }
@@ -108,7 +109,7 @@ authApiRouter.get('/logout', async (req, res) => {
 });
 
 authApiRouter.get('/checkUser', async (req, res) => {
-  console.log('lflflf');
+  // console.log('lflflf');
   try {
     const userSession = req.session.userId;
     if (userSession) {
@@ -116,7 +117,7 @@ authApiRouter.get('/checkUser', async (req, res) => {
         where: { id: userSession },
         attributes: { exclude: ['password'] },
       });
-      console.log('userserser', user);
+      // console.log('userserser', user);
       res.status(201).json(user);
     } else {
       res.end();

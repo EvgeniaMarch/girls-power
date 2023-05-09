@@ -4,4 +4,9 @@
 
 .nav-wrapper {
   height: 90px;
+  font-size: 12px;
+}
+
+.hello {
+  font-size: 14px;
 }

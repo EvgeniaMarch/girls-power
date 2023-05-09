@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, store } from '../../redux/store';
@@ -6,7 +6,6 @@ import './Nav.css';
 
 function Nav(): JSX.Element {
   const { user } = useSelector((store: RootState) => store.user);
-
 
   const navigate = useNavigate();
 
@@ -16,7 +15,6 @@ function Nav(): JSX.Element {
 
   const { score } = useSelector((store: RootState) => store.score);
 
-
   const dispatch = useDispatch();
 
   const logOut = (): void => {
@@ -24,6 +22,49 @@ function Nav(): JSX.Element {
       .then((res) => res.json())
       .then(() => dispatch({ type: 'LOG_OUT' }));
   };
+  const btn = document.querySelector('.fifnishButn');
+
+  const handleFinishGame = () => {
+    console.log('working');
+
+    fetch(`/api/main`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        score,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  };
+
+  // adsContainer.addEventListener('click', async (event) => {
+  //
+  //   if (event.target.classList.contains('edit-ad-ok')) {
+  //     const button = event.target;
+  //     const adCard = button.closest('.ad-card');
+
+  //     const form = adCard.querySelector('.edit-card');
+
+  //     const { id } = adCard.dataset;
+  //     const response = await fetch(`/api/ads/${id}`, {
+  //       method: 'PUT',
+  //       body: JSON.stringify({
+  //         title: form.title.value,
+  //         image: form.image.value,
+  //         price: form.price.value,
+  //       }),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+
+  //     const { html } = await response.json();
+
+  //     // заменяем старую карточку на новую
+  //     adCard.outerHTML = html;
+  //   }
+  // });
 
   return (
     <nav>
@@ -32,10 +73,14 @@ function Nav(): JSX.Element {
           <ul className="nav__menu">
             <li>
               <NavLink to="/home">
-                <img className="logo" src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png" alt="pic" />
+                <img
+                  className="logo"
+                  src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png"
+                  alt="pic"
+                />
               </NavLink>
             </li>
-            <li>
+            <li className="hello">
               Привет, {user.login}! Твой счет: {score}
             </li>
 
@@ -44,16 +89,25 @@ function Nav(): JSX.Element {
             </li>
 
             <li>
-              <Link onClick={logOut} to="/logout">
+              <Link onClick={logOut} to="/home">
                 Выйти
               </Link>
+            </li>
+            <li>
+              <button onClick={handleFinishGame} className="fifnishButn">
+                Закончить игру
+              </button>
             </li>
           </ul>
         ) : (
           <ul className="nav__menu">
             <li>
               <NavLink to="/">
-                <img className="logo" src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png" alt="pic" />
+                <img
+                  className="logo"
+                  src="https://www.pngmart.com/files/21/Girl-Power-Logo-PNG-File.png"
+                  alt="pic"
+                />
               </NavLink>
             </li>
             <li>

@@ -55,50 +55,40 @@ function CardItem({ card }: { card: Card }): JSX.Element {
         </div>
       )}
       {modal && (
-        <div className="card">
-          <h3>{`Вопрос за ${card.score}`}</h3>
-          <div>{card.question}</div>
-
-          <div className='1'>
-            <div className='input-field col s6'>
-              <form onSubmit={handleCheckAnswer}>
-                <input
-                  id='answer'
-                  type='text'
-                  className='validate input'
-                  placeholder='Ваш ответ'
-                  value={answer}
-                  onChange={(event) => handleAnswer(event)}
-                />
-                <label className='active' htmlFor='answer'></label>
-                <button
-                  className='waves-effect waves-light btn-small btn-ok-card'
-                  onClick={hadleShowAnswer}
-                >
-
-        
-                  Проверить ответ
-                </button>
-              </form>
-            </div>
+        <>
+          <div className="buttons-Container">
+            <button className="waves-effect waves-light btn-large score-btns pink lighten-2" onClick={handleModal} disabled={disableBtns}>
+              {card.score}
+            </button>
           </div>
+          <div className="card">
+            <h3>{`Вопрос за ${card.score}`}</h3>
+            <div>{card.question}</div>
 
-          {checkAnswer && (
-            <>
-              <div>{`${result}`}</div>
-              <div>
-
-                <button
-                  className='waves-effect waves-light btn-small btn-ok-card'
-                  onClick={handleModal}
-                >
-
-                  Закрыть
-                </button>
+            <div className="1">
+              <div className="input-field col s6">
+                <form onSubmit={handleCheckAnswer}>
+                  <input id="answer" type="text" className="validate input" placeholder="Ваш ответ" value={answer} onChange={(event) => handleAnswer(event)} />
+                  <label className="active" htmlFor="answer"></label>
+                  <button className="waves-effect waves-light btn-small btn-ok-card" onClick={hadleShowAnswer}>
+                    Проверить ответ
+                  </button>
+                </form>
               </div>
-            </>
-          )}
-        </div>
+            </div>
+
+            {checkAnswer && (
+              <>
+                <div>{`${result}`}</div>
+                <div>
+                  <button className="waves-effect waves-light btn-small btn-ok-card" onClick={handleModal}>
+                    Закрыть
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </>
       )}
     </div>
   );

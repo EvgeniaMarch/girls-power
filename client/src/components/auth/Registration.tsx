@@ -62,7 +62,7 @@ function Registration(): JSX.Element {
       <label htmlFor="password">Введи пароль</label>
       <input className="input" value={password} onChange={(e) => setPassword(e.target.value)} id="password" type="password" />
       <label htmlFor="password2">Повтори пароль</label>
-      <input className="input" value={password2} onChange={(e) => setPassword2(e.target.value)} id="password2" type="password2" />
+      <input className="input" value={password2} onChange={(e) => setPassword2(e.target.value)} id="password2" type="password" />
 
       <button type="submit" className="btn-ok">
         Зарегистрироваться

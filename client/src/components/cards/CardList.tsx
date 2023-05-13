@@ -20,9 +20,9 @@ function CardList(): JSX.Element {
   }, []);
 
   return (
-    <div className='main'>
+    <div className="main">
       <CardTopics />
-      <div className='all-btns'>
+      <div className="all-btns">
         {cards.map((card) => (
           <CardItem key={card.id} card={card} />
         ))}

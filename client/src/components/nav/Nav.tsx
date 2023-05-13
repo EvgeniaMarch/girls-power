@@ -8,6 +8,7 @@ function Nav(): JSX.Element {
   const { user } = useSelector((store: RootState) => store.user);
 
   const navigate = useNavigate();
+  const navigateToHome = useNavigate();
 
   // useEffect(() => {
   //   console.log(user?.login);
@@ -22,7 +23,6 @@ function Nav(): JSX.Element {
       .then((res) => res.json())
       .then(() => dispatch({ type: 'LOG_OUT' }));
   };
-  const btn = document.querySelector('.fifnishButn');
 
   const handleFinishGame = () => {
     console.log('working');
@@ -36,35 +36,9 @@ function Nav(): JSX.Element {
         'Content-Type': 'application/json',
       },
     });
+    navigateToHome('/');
+    dispatch({ type: 'UPDATE_SCORE' });
   };
-
-  // adsContainer.addEventListener('click', async (event) => {
-  //
-  //   if (event.target.classList.contains('edit-ad-ok')) {
-  //     const button = event.target;
-  //     const adCard = button.closest('.ad-card');
-
-  //     const form = adCard.querySelector('.edit-card');
-
-  //     const { id } = adCard.dataset;
-  //     const response = await fetch(`/api/ads/${id}`, {
-  //       method: 'PUT',
-  //       body: JSON.stringify({
-  //         title: form.title.value,
-  //         image: form.image.value,
-  //         price: form.price.value,
-  //       }),
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     });
-
-  //     const { html } = await response.json();
-
-  //     // заменяем старую карточку на новую
-  //     adCard.outerHTML = html;
-  //   }
-  // });
 
   return (
     <nav>
@@ -85,7 +59,7 @@ function Nav(): JSX.Element {
             </li>
 
             <li>
-              <NavLink to="/home">Главная страница</NavLink>
+              <NavLink to="/home">Твоя игра</NavLink>
             </li>
 
             <li>
@@ -110,9 +84,9 @@ function Nav(): JSX.Element {
                 />
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/home">Главная страница</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/login">Войти</NavLink>
             </li>

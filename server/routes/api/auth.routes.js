@@ -70,11 +70,11 @@ authApiRouter.post('/login', async (req, res) => {
       if (user && (await bcrypt.compare(password, user.password))) {
         const existingUser = {
           id: user.id,
-          name: user.name,
+          login: user.login,
           email: user.email,
         };
         req.session.userId = existingUser.id;
-        console.log('77', req.session.userId);
+        console.log('77', existingUser);
         res.status(201).json(existingUser);
         return;
       }
